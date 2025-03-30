@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Shared\DevBoost.Framework\DevBoost.Framework.csproj" />
+      <ProjectReference Include="..\DevBoost.Courses.Application\DevBoost.Courses.Application.csproj" />
+    </ItemGroup>
+
+</Project>
