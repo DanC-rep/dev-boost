@@ -1,5 +1,6 @@
 using DevBoost.Web;
 using DevBoost.Web.Extensions;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,8 +16,15 @@ app.UseExceptionMiddleware();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwagger(options =>
+    {
+        options.RouteTemplate = "/openapi/{documentName}.json";
+    });
+    app.MapScalarApiReference(opt =>
+    {
+        opt.Theme = ScalarTheme.Moon;
+        opt.DefaultHttpClient = new(ScalarTarget.Http, ScalarClient.Http11);
+    });
 }
 
 app.UseHttpsRedirection();
