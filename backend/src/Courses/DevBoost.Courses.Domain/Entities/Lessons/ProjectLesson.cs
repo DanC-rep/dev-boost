@@ -1,22 +1,23 @@
-using CSharpFunctionalExtensions;
+using DevBoost.Courses.Domain.Enums;
 using DevBoost.SharedKernel.ValueObjects.Ids;
 
 namespace DevBoost.Courses.Domain.Entities.Lessons;
 
-public class ProjectLesson : Entity<ProjectLessonId>
+public class ProjectLesson : Lesson
 {
-    private ProjectLesson(ProjectLessonId id) : base(id)
-    {
-    }
-
     public ProjectLesson(
-        string content,
-        ProjectLessonId id) : base(id)
+        string name,
+        string description,
+        LessonType lessonType,
+        ProgrammingLanguage language,
+        List<string> projectFiles,
+        LessonId id) : base(name, description, lessonType, id)
     {
-        Content = content;
+        Language = language;
+        ProjectFiles = projectFiles;
     }
 
-    public string Content { get; set; } = default!;
-
-    public LessonId LessonId { get; set; }
+    public ProgrammingLanguage Language { get; private set; }
+    
+    public List<string> ProjectFiles { get; private set; }
 }

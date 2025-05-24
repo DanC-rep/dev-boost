@@ -1,5 +1,7 @@
 using CSharpFunctionalExtensions;
 using DevBoost.Courses.Domain.Enums;
+using DevBoost.Courses.Domain.ValueObjects;
+using DevBoost.SharedKernel.ValueObjects;
 using DevBoost.SharedKernel.ValueObjects.Ids;
 
 namespace DevBoost.Courses.Domain.Entities;
@@ -14,17 +16,17 @@ public class Course : Entity<CourseId>
         string name,
         string description,
         CourseDifficult courseDifficult,
-        int duration,
-        IEnumerable<string> requiredSkills,
-        DateOnly creationDate,
-        string author,
+        CourseDuration duration,
+        ValueObjectList<Skill> requiredSkills,
+        CreationDate creationDate,
+        CourseAuthor author,
         CourseId id) : base(id)
     {
         Name = name;
         Description = description;
         Difficult = courseDifficult;
         Duration = duration;
-        RequiredSkills = requiredSkills.ToList();
+        RequiredSkills = requiredSkills;
         CreationDate = creationDate;
         Author = author;
     }
@@ -35,13 +37,13 @@ public class Course : Entity<CourseId>
     
     public CourseDifficult Difficult { get; private set; }
 
-    public int Duration { get; private set; } // VO
+    public CourseDuration Duration { get; private set; }
     
-    public List<string> RequiredSkills { get; private set; } // VO List
+    public ValueObjectList<Skill> RequiredSkills { get; private set; }
     
-    public DateOnly CreationDate { get; private set; } // VO
+    public CreationDate CreationDate { get; private set; }
     
-    public string Author { get; private set; } // VO
+    public CourseAuthor Author { get; private set; }
 
     private readonly List<Module> _modules = [];
     

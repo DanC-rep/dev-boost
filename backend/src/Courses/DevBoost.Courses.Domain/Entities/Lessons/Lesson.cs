@@ -2,15 +2,15 @@ using CSharpFunctionalExtensions;
 using DevBoost.Courses.Domain.Enums;
 using DevBoost.SharedKernel.ValueObjects.Ids;
 
-namespace DevBoost.Courses.Domain.Entities;
+namespace DevBoost.Courses.Domain.Entities.Lessons;
 
-public class Lesson : Entity<LessonId>
+public abstract class Lesson : Entity<LessonId>
 {
     private Lesson(LessonId id) : base(id)
     {
     }
 
-    public Lesson(
+    protected Lesson(
         string name,
         string description,
         LessonType lessonType,

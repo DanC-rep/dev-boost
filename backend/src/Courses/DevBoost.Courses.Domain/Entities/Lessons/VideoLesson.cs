@@ -1,22 +1,19 @@
-using CSharpFunctionalExtensions;
+using DevBoost.Courses.Domain.Enums;
 using DevBoost.SharedKernel.ValueObjects.Ids;
 
 namespace DevBoost.Courses.Domain.Entities.Lessons;
 
-public class VideoLesson : Entity<VideoLessonId>
+public class VideoLesson : Lesson
 {
-    private VideoLesson(VideoLessonId id) : base(id)
-    {
-    }
-
     public VideoLesson(
-        string content,
-        VideoLessonId id) : base(id)
+        string name,
+        string description,
+        LessonType lessonType,
+        string videoUrl,
+        LessonId id) : base(name, description, lessonType, id)
     {
-        Content = content;
+        VideoUrl = videoUrl;
     }
 
-    public string Content { get; set; } = default!;
-
-    public LessonId LessonId { get; set; }
+    public string VideoUrl { get; private set; }
 }
